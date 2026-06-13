@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mi Universo ❤️</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#040814;color:#fff;overflow:hidden}
+#welcome,#universe{position:fixed;inset:0}
+#welcome{
+background:url('inicio.jpg') center/cover no-repeat;
+display:flex;align-items:center;justify-content:center;
+}
+.overlay{position:absolute;inset:0;background:rgba(0,0,0,.6)}
+.card{position:relative;z-index:2;max-width:800px;text-align:center;padding:30px}
+h1{font-size:3.5rem;text-shadow:0 0 20px #ff7eb3}
+#typed{font-size:1.25rem;line-height:1.8;margin-top:15px}
+.btn{
+margin-top:25px;padding:14px 30px;border:none;border-radius:30px;
+cursor:pointer;font-size:1rem;background:#ff5fa2;color:white;
+box-shadow:0 0 20px #ff5fa2;
+}
+#enter{display:none}
+#universe{display:none;background:radial-gradient(circle at bottom,#17233d,#040814)}
+.star{position:absolute;background:white;border-radius:50%;animation:twinkle 4s infinite}
+@keyframes twinkle{50%{opacity:.2}}
+.nebula{
+position:absolute;border-radius:50%;filter:blur(60px);opacity:.25
+}
+.n1{width:300px;height:300px;background:#ff4fa3;top:10%;left:10%}
+.n2{width:350px;height:350px;background:#4fc3ff;bottom:10%;right:10%}
+.moon{
+position:absolute;top:40px;right:40px;width:110px;height:110px;
+border-radius:50%;background:white;box-shadow:0 0 50px white
+}
+.planet{
+position:absolute;width:100px;height:100px;border-radius:50%;
+display:flex;align-items:center;justify-content:center;
+text-align:center;padding:8px;cursor:pointer;transition:.3s
+}
+.planet:hover{transform:scale(1.12)}
+.p1{background:#ff7eb3;top:15%;left:10%}
+.p2{background:#77ddff;color:#000;top:20%;right:12%}
+.p3{background:#ffe66d;color:#000;top:55%;left:12%}
+.p4{background:#bc8cff;top:58%;right:10%}
+.p5{background:#8cff66;color:#000;top:38%;left:44%}
+.p6{background:#ff9d6c;bottom:8%;left:42%}
+#modal{
+display:none;position:fixed;top:50%;left:50%;
+transform:translate(-50%,-50%);
+width:90%;max-width:520px;
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(12px);
+padding:25px;border-radius:20px;text-align:center;z-index:1000
+}
+.final{
+position:absolute;bottom:20px;left:50%;transform:translateX(-50%)
+}
+.heart{
+position:fixed;pointer-events:none;font-size:20px;
+animation:float 2s forwards
+}
+@keyframes float{
+to{transform:translateY(-120px);opacity:0}
+}
+.shooting{
+position:absolute;width:180px;height:2px;
+background:linear-gradient(to right,#fff,transparent);
+transform:rotate(-35deg);
+animation:shoot 9s linear infinite;
+}
+@keyframes shoot{
+from{top:-10%;left:-20%}
+to{top:120%;left:120%}
+}
+.secret{
+position:absolute;font-size:22px;cursor:pointer
+}
+</style>
+</head>
+<body>
+
+<div id="welcome">
+<div class="overlay"></div>
+<div class="card">
+<h1>Hola mi niña ❤️</h1>
+<p id="typed"></p>
+<button id="enter" class="btn" onclick="startUniverse()">🌌 Entrar al universo</button>
+</div>
+</div>
+
+<div id="universe">
+<div class="nebula n1"></div>
+<div class="nebula n2"></div>
+<div class="moon"></div>
+<div class="shooting"></div>
+
+<div class="planet p1" onclick="showMsg('Tu sonrisa 😊','Tu sonrisa tiene una forma muy especial de alegrar mis días, incluso cuando no sabes que la necesito.')">Sonrisa</div>
+<div class="planet p2" onclick="showMsg('Tus ojos ✨','Hay algo en tus ojos que siempre logra llamar mi atención, podría mirarlos durante horas y seguir encontrando algo bonito en ellos.')">Ojos</div>
+<div class="planet p3" onclick="showMsg('Tus rizos 💕','Tus rizos son una de esas cosas que te hacen única, y cada vez que los veo recuerdo lo hermosa que eres.')">Rizos</div>
+<div class="planet p4" onclick="showMsg('Tu forma de ser ❤️','Me encanta la persona que eres, tu manera de pensar, de sentir y de ver las cosas.')">Personalidad</div>
+<div class="planet p5" onclick="showMsg('Tu voz 🎵','Hay días en los que escuchar tu voz es suficiente para hacerme sentir mejor.')">Voz</div>
+<div class="planet p6" onclick="showMsg('Todo de ti 🌹','Si me preguntaran qué es lo que más me gusta de ti, no podría elegir una sola cosa, porque son demasiadas.')">Todo de ti</div>
+
+<div class="secret" style="top:18%;left:35%" onclick="showMsg('Mensaje secreto 💌','A veces me quedo pensando en ti más de lo que debería ❤️')">⭐</div>
+<div class="secret" style="top:70%;left:28%" onclick="showMsg('Mensaje secreto 💫','Gracias por hacer mis días un poco más bonitos ✨')">⭐</div>
+<div class="secret" style="top:32%;right:32%" onclick="showMsg('Mensaje secreto 🌙','Tus ojos tienen algo que nunca deja de llamar mi atención.')">⭐</div>
+
+<button class="btn final" onclick="showMsg('Gracias por existir ❤️','Entre miles de millones de estrellas, tú sigues siendo mi lugar favorito, gracias por tu sonrisa, por tus hermosos rizos y por la persona tan increíble que eres. Te quiero muchísimo ❤️🌹✨')">💌 Un último mensaje</button>
+
+<audio autoplay loop>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+<div id="modal">
+<h2 id="mt"></h2><br>
+<p id="mc"></p><br>
+<button class="btn" onclick="modal.style.display='none'">Cerrar</button>
+</div>
+
+<script>
+const text="Bienvenida a este pequeño universo, donde cada estrella guarda una razón por la que me gustas, porque cuando pienso en algo bonito, inevitablemente termino pensando en ti ✨";
+let i=0;
+(function type(){
+ if(i<text.length){typed.innerHTML+=text[i++];setTimeout(type,35);}
+ else enter.style.display='inline-block';
+})();
+
+for(let i=0;i<260;i++){
+ let s=document.createElement('div');
+ s.className='star';
+ let z=Math.random()*3+1;
+ s.style.width=z+'px'; s.style.height=z+'px';
+ s.style.left=Math.random()*100+'%';
+ s.style.top=Math.random()*100+'%';
+ s.style.animationDelay=Math.random()*4+'s';
+ document.body.appendChild(s);
+}
+
+function startUniverse(){
+ welcome.style.display='none';
+ universe.style.display='block';
+}
+
+function showMsg(t,c){
+ mt.innerText=t; mc.innerText=c;
+ modal.style.display='block';
+}
+
+document.addEventListener('click',e=>{
+ let h=document.createElement('div');
+ h.className='heart';
+ h.innerHTML='❤️';
+ h.style.left=e.clientX+'px';
+ h.style.top=e.clientY+'px';
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),2000);
+});
+</script>
+</body>
+</html>
